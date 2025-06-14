@@ -2,19 +2,19 @@ import path from 'path';
 import {parse} from 'pg-connection-string';
 
 module.exports = ({ env }) => {
-  const conf = parse(env("DATABASE_URL"));
+  const conf = parse(process.env.DATABASE_URL);
   return {
   connection: {
     client: 'postgres',
     connection: {
       host: conf.host,
-      port: env.int('DATABASE_PORT', 5432),
-      database: env('DATABASE_NAME', 'strapi'),
-      user: env('DATABASE_USERNAME', 'strapi'),
-      password: env('DATABASE_PASSWORD', 'strapi'),
-      schema: env('DATABASE_SCHEMA', 'public'), // Not required
+      port: conf.port,
+      database: conf.database,
+      user: conf.user,
+      password:  conf.password,
+      schema: process.env.DATABASE_SCHEMA, // Not required
       ssl: {
-        rejectUnauthorized: env.bool('DATABASE_SSL_SELF', false), // For self-signed certificates
+        rejectUnauthorized: process.env.DATABASE_SSL_SELF || false, // For self-signed certificates
       },
       family: 4, 
     },
