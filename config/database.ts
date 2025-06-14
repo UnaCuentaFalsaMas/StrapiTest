@@ -14,7 +14,7 @@ module.exports = ({ env }) => {
       password:  conf.password,
       schema: process.env.DATABASE_SCHEMA, // Not required
       ssl: {
-        rejectUnauthorized: process.env.DATABASE_SSL_SELF || false, // For self-signed certificates
+        rejectUnauthorized: process.env.DATABASE_SSL_SELF || true, // For self-signed certificates
       },
       family: 4, 
     },
