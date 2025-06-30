@@ -1,0 +1,14 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hashe_sobres",
+  "info": {
+    "singularName": "hashe-sobre",
+    "pluralName": "hashe-sobres",
+    "displayName": "HasheSobre"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}

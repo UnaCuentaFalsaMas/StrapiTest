@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "test_mails",
+  "info": {
+    "singularName": "test-mail",
+    "pluralName": "test-mails",
+    "displayName": "TestMail"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "mensaje": {
+      "type": "string"
+    }
+  }
+}

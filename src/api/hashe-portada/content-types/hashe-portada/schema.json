@@ -1,0 +1,14 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hashe_portadas",
+  "info": {
+    "singularName": "hashe-portada",
+    "pluralName": "hashe-portadas",
+    "displayName": "HashePortada"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}
