@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_redes_sociales_redes_sociales",
+  "info": {
+    "displayName": "redesSociales",
+    "icon": "twitter"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string"
+    },
+    "RedesSociales": {
+      "type": "enumeration",
+      "enum": [
+        "Spotify",
+        "Apple Music",
+        "iTunes",
+        "Youtube",
+        "Amazon",
+        "Youtube Music",
+        "Deezer"
+      ]
+    }
+  },
+  "config": {}
+}

@@ -12,6 +12,21 @@
   "pluginOptions": {},
   "attributes": {
     "mensaje": {
+      "type": "text"
+    },
+    "email": {
+      "type": "email"
+    },
+    "asunto": {
+      "type": "string"
+    },
+    "motivo": {
+      "type": "string"
+    },
+    "nombre": {
+      "type": "string"
+    },
+    "origen": {
       "type": "string"
     }
   }

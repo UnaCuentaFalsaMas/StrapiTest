@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hashe_artistas",
+  "info": {
+    "singularName": "hashe-artista",
+    "pluralName": "hashe-artistas",
+    "displayName": "Hashe Artistas"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nombre": {
+      "type": "string"
+    },
+    "Destacado": {
+      "type": "boolean"
+    },
+    "IdArtista": {
+      "type": "uid",
+      "targetField": "Nombre"
+    },
+    "Descripcion": {
+      "type": "string"
+    },
+    "Redessociales": {
+      "type": "component",
+      "component": "redes-sociales.redes-sociales",
+      "repeatable": true
+    },
+    "Imagen": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Genero": {
+      "type": "string"
+    }
+  }
+}

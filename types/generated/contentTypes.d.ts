@@ -407,13 +407,13 @@ export interface ApiDatosArtistaDatosArtista
   };
 }
 
-export interface ApiHasheArtistaDestacadoHasheArtistaDestacado
+export interface ApiHasheArtistaHasheArtista
   extends Struct.CollectionTypeSchema {
-  collectionName: 'hashe_artista_destacados';
+  collectionName: 'hashe_artistas';
   info: {
-    displayName: 'Hashe Artista Destacado';
-    pluralName: 'hashe-artista-destacados';
-    singularName: 'hashe-artista-destacado';
+    displayName: 'Hashe Artistas';
+    pluralName: 'hashe-artistas';
+    singularName: 'hashe-artista';
   };
   options: {
     draftAndPublish: true;
@@ -422,96 +422,23 @@ export interface ApiHasheArtistaDestacadoHasheArtistaDestacado
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Descripcion: Schema.Attribute.String;
+    Destacado: Schema.Attribute.Boolean;
+    Genero: Schema.Attribute.String;
+    IdArtista: Schema.Attribute.UID<'Nombre'>;
+    Imagen: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::hashe-artista-destacado.hashe-artista-destacado'
+      'api::hashe-artista.hashe-artista'
     > &
       Schema.Attribute.Private;
+    Nombre: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiHashePortadaHashePortada
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'hashe_portadas';
-  info: {
-    displayName: 'HashePortada';
-    pluralName: 'hashe-portadas';
-    singularName: 'hashe-portada';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::hashe-portada.hashe-portada'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiHasheSobreHasheSobre extends Struct.CollectionTypeSchema {
-  collectionName: 'hashe_sobres';
-  info: {
-    displayName: 'HasheSobre';
-    pluralName: 'hashe-sobres';
-    singularName: 'hashe-sobre';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::hashe-sobre.hashe-sobre'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiHasheUltimaPublicacionHasheUltimaPublicacion
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'hashe_ultima_publicacions';
-  info: {
-    displayName: 'Hashe Ultima Publicacion ';
-    pluralName: 'hashe-ultima-publicacions';
-    singularName: 'hashe-ultima-publicacion';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::hashe-ultima-publicacion.hashe-ultima-publicacion'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
+    Redessociales: Schema.Attribute.Component<
+      'redes-sociales.redes-sociales',
+      true
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -554,16 +481,21 @@ export interface ApiTestMailTestMail extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    asunto: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::test-mail.test-mail'
     > &
       Schema.Attribute.Private;
-    mensaje: Schema.Attribute.String;
+    mensaje: Schema.Attribute.Text;
+    motivo: Schema.Attribute.String;
+    nombre: Schema.Attribute.String;
+    origen: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1081,10 +1013,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::datos-artista.datos-artista': ApiDatosArtistaDatosArtista;
-      'api::hashe-artista-destacado.hashe-artista-destacado': ApiHasheArtistaDestacadoHasheArtistaDestacado;
-      'api::hashe-portada.hashe-portada': ApiHashePortadaHashePortada;
-      'api::hashe-sobre.hashe-sobre': ApiHasheSobreHasheSobre;
-      'api::hashe-ultima-publicacion.hashe-ultima-publicacion': ApiHasheUltimaPublicacionHasheUltimaPublicacion;
+      'api::hashe-artista.hashe-artista': ApiHasheArtistaHasheArtista;
       'api::logo.logo': ApiLogoLogo;
       'api::test-mail.test-mail': ApiTestMailTestMail;
       'plugin::content-releases.release': PluginContentReleasesRelease;
