@@ -479,6 +479,43 @@ export interface ApiHasheBlogHasheBlog extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiHasheTallerHasheTaller extends Struct.CollectionTypeSchema {
+  collectionName: 'hashe_tallers';
+  info: {
+    displayName: 'Hashe Taller';
+    pluralName: 'hashe-tallers';
+    singularName: 'hashe-taller';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.String;
+    estado: Schema.Attribute.Enumeration<
+      ['En Curso', 'Finalizado', 'Pr\u00F3ximamente']
+    >;
+    imagen: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    link: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hashe-taller.hashe-taller'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiLogoLogo extends Struct.SingleTypeSchema {
   collectionName: 'logos';
   info: {
@@ -1049,6 +1086,7 @@ declare module '@strapi/strapi' {
       'api::datos-artista.datos-artista': ApiDatosArtistaDatosArtista;
       'api::hashe-artista.hashe-artista': ApiHasheArtistaHasheArtista;
       'api::hashe-blog.hashe-blog': ApiHasheBlogHasheBlog;
+      'api::hashe-taller.hashe-taller': ApiHasheTallerHasheTaller;
       'api::logo.logo': ApiLogoLogo;
       'api::test-mail.test-mail': ApiTestMailTestMail;
       'plugin::content-releases.release': PluginContentReleasesRelease;
