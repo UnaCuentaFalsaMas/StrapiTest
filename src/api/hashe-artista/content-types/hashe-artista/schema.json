@@ -12,35 +12,40 @@
   "pluginOptions": {},
   "attributes": {
     "Nombre": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "Destacado": {
-      "type": "boolean"
+      "type": "boolean",
+      "required": true,
+      "default": false
     },
     "IdArtista": {
       "type": "uid",
       "targetField": "Nombre"
     },
     "Descripcion": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "Redessociales": {
       "type": "component",
       "component": "redes-sociales.redes-sociales",
-      "repeatable": true
+      "repeatable": true,
+      "required": true
     },
     "Imagen": {
       "type": "media",
       "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
-        "files",
-        "videos",
-        "audios"
+        "files"
       ]
     },
     "Genero": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

@@ -12,34 +12,38 @@
   "pluginOptions": {},
   "attributes": {
     "titulo": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "descripcion": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "imagen": {
       "type": "media",
       "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
-        "files",
-        "videos",
-        "audios"
+        "files"
       ]
     },
     "fecha": {
       "type": "date"
     },
     "categorias": {
-      "type": "blocks"
+      "type": "blocks",
+      "required": true
     },
     "contenido": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "link": {
       "type": "component",
       "component": "hashe.link",
-      "repeatable": true
+      "repeatable": true,
+      "required": true
     }
   }
 }

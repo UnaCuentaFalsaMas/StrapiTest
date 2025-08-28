@@ -7,7 +7,7 @@ export interface HasheLink extends Struct.ComponentSchema {
   };
   attributes: {
     nombre: Schema.Attribute.String;
-    url: Schema.Attribute.String;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -28,8 +28,9 @@ export interface RedesSocialesRedesSociales extends Struct.ComponentSchema {
         'Youtube Music',
         'Deezer',
       ]
-    >;
-    url: Schema.Attribute.String;
+    > &
+      Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 

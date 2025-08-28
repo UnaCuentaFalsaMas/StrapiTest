@@ -7,10 +7,12 @@
   "options": {},
   "attributes": {
     "url": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "RedesSociales": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "Spotify",
         "Apple Music",

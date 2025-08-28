@@ -6,10 +6,12 @@
   "options": {},
   "attributes": {
     "nombre": {
-      "type": "string"
+      "type": "string",
+      "required": false
     },
     "url": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   },
   "config": {}

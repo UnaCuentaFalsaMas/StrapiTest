@@ -12,26 +12,30 @@
   "pluginOptions": {},
   "attributes": {
     "titulo": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "imagen": {
       "type": "media",
       "multiple": true,
+      "required": true,
       "allowedTypes": [
         "images",
-        "files",
-        "videos",
-        "audios"
+        "files"
       ]
     },
     "descripcion": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "link": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "estado": {
       "type": "enumeration",
+      "required": true,
+      "default": "Próximamente",
       "enum": [
         "En Curso",
         "Finalizado",

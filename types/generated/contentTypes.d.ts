@@ -422,23 +422,92 @@ export interface ApiHasheArtistaHasheArtista
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Descripcion: Schema.Attribute.String;
-    Destacado: Schema.Attribute.Boolean;
-    Genero: Schema.Attribute.String;
+    Descripcion: Schema.Attribute.String & Schema.Attribute.Required;
+    Destacado: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    Genero: Schema.Attribute.String & Schema.Attribute.Required;
     IdArtista: Schema.Attribute.UID<'Nombre'>;
-    Imagen: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Imagen: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::hashe-artista.hashe-artista'
     > &
       Schema.Attribute.Private;
-    Nombre: Schema.Attribute.String;
+    Nombre: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     Redessociales: Schema.Attribute.Component<
       'redes-sociales.redes-sociales',
       true
-    >;
+    > &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHasheBannerServicioHasheBannerServicio
+  extends Struct.SingleTypeSchema {
+  collectionName: 'hashe_banner_servicios';
+  info: {
+    displayName: 'Hashe Banner Servicio';
+    pluralName: 'hashe-banner-servicios';
+    singularName: 'hashe-banner-servicio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    activo: Schema.Attribute.Boolean;
+    alt: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    imagen: Schema.Attribute.Media<'images' | 'files'>;
+    link: Schema.Attribute.Component<'hashe.link', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hashe-banner-servicio.hashe-banner-servicio'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHasheBannerHasheBanner extends Struct.SingleTypeSchema {
+  collectionName: 'hashe_banners';
+  info: {
+    displayName: 'Hashe Banner';
+    pluralName: 'hashe-banners';
+    singularName: 'hashe-banner';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    activo: Schema.Attribute.Boolean & Schema.Attribute.Required;
+    alt: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    imagen: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.Required;
+    link: Schema.Attribute.Component<'hashe.link', false> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hashe-banner.hashe-banner'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -456,15 +525,17 @@ export interface ApiHasheBlogHasheBlog extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    categorias: Schema.Attribute.Blocks;
-    contenido: Schema.Attribute.RichText;
+    categorias: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    contenido: Schema.Attribute.RichText & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    descripcion: Schema.Attribute.String;
+    descripcion: Schema.Attribute.String & Schema.Attribute.Required;
     fecha: Schema.Attribute.Date;
-    imagen: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    link: Schema.Attribute.Component<'hashe.link', true>;
+    imagen: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    link: Schema.Attribute.Component<'hashe.link', true> &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -472,7 +543,7 @@ export interface ApiHasheBlogHasheBlog extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    titulo: Schema.Attribute.String;
+    titulo: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -493,15 +564,15 @@ export interface ApiHasheTallerHasheTaller extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    descripcion: Schema.Attribute.String;
+    descripcion: Schema.Attribute.String & Schema.Attribute.Required;
     estado: Schema.Attribute.Enumeration<
       ['En Curso', 'Finalizado', 'Pr\u00F3ximamente']
-    >;
-    imagen: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    link: Schema.Attribute.String;
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Pr\u00F3ximamente'>;
+    imagen: Schema.Attribute.Media<'images' | 'files', true> &
+      Schema.Attribute.Required;
+    link: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -509,7 +580,7 @@ export interface ApiHasheTallerHasheTaller extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    titulo: Schema.Attribute.String;
+    titulo: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1085,6 +1156,8 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::datos-artista.datos-artista': ApiDatosArtistaDatosArtista;
       'api::hashe-artista.hashe-artista': ApiHasheArtistaHasheArtista;
+      'api::hashe-banner-servicio.hashe-banner-servicio': ApiHasheBannerServicioHasheBannerServicio;
+      'api::hashe-banner.hashe-banner': ApiHasheBannerHasheBanner;
       'api::hashe-blog.hashe-blog': ApiHasheBlogHasheBlog;
       'api::hashe-taller.hashe-taller': ApiHasheTallerHasheTaller;
       'api::logo.logo': ApiLogoLogo;
